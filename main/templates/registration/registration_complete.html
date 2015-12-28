@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{% block content %}
+<p>{% trans "You are now registered.  Activation email sent." %}</p>
+<p>Check your email :)</p>
+ <div><a class="senior_button" href="/"><button class="btn btn-default">Return to login</button></a></div>
+{% endblock %}

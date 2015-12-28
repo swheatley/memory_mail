@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'social_auth',
+    'registration',
+    'crispy_forms',
+    'bootstrap3',
+    
+
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
