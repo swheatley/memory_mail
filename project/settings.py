@@ -13,11 +13,38 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+# AUTH_USER_MODEL = 'main.CustomUser'
+# SOCIAL_AUTH_USER_MODEL = 'main.CustomUser'
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+# # TWITTER_CONSUMER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
+# TWITTER_CONSUMER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
+
+# FACEBOOK_APP_ID = '151538761865910' 
+# FACEBOOK_API_SECRET = '28034ed650d370911fd8bf37329493df'
+
+# INSTAGRAM_CLIENT_ID = 'ef89aa0c732a4ef1a7c0a5aed5e66465' 
+# INSTAGRAM_CLIENT_SECRET = '250e9176b5e84c33ba2f3d875ec4d570'
+
+# # GOOGLE_CONSUMER_KEY          = ''
+# GOOGLE_CONSUMER_SECRET       = ''
+# GOOGLE_OAUTH2_CLIENT_ID      = ''
+# GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+
+
+LOGIN_URL = '/login-form/'
+LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_ERROR_URL = '/login-error/'
+
+
+
+
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+#  See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '25rv1j5k)3589&hz%dv1_ikys+8bo48vhqh=v7op@i8r3u)-1z'
@@ -59,6 +86,17 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# # AUTHENTICATION_BACKENDS = (
+#     'social_auth.backends.twitter.TwitterBackend',
+#     'social_auth.backends.facebook.FacebookBackend',
+#     # 'social_auth.backends.instagram.InstagramBackend',
+#     'social_auth.backends.google.GoogleOAuthBackend',
+#     'social_auth.backends.google.GoogleOAuth2Backend',
+#     'social_auth.backends.google.GoogleBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+
+# )
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -72,7 +110,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_auth.context_processors.social_auth_by_name_backends',
+                'social_auth.context_processors.social_auth_backends',
+                'social_auth.context_processors.social_auth_by_type_backends',
+                'social_auth.context_processors.social_auth_login_redirect',
             ],
+
         },
     },
 ]
@@ -133,3 +176,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# FMAKEY = 'IZTZG95VPMY93N3N'

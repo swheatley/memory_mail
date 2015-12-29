@@ -20,6 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from main import views 
 
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     
@@ -29,4 +31,7 @@ urlpatterns = [
     # Django Registration Redux
     url(r'^accounts/', include('registration.backends.default.urls')),
     
+    # Social OAuth
+    url(r'', include('social_auth.urls')),
+
 ]
