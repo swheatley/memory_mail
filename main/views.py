@@ -2,6 +2,12 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
+
+from django.contrib.auth import authenticate, login, logout
+from django.db import IntegrityError
+
+from main.models import CustomUser
+
 # from django.contrib.auth.decorators import login_required
 
 # Create your views here.

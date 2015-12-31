@@ -14,30 +14,24 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
-# AUTH_USER_MODEL = 'main.CustomUser'
-# SOCIAL_AUTH_USER_MODEL = 'main.CustomUser'
+AUTH_USER_MODEL = 'main.CustomUser' # !!!Remember this has to do with CustomManager and CustomUser!!!!
+SOCIAL_AUTH_USER_MODEL = 'main.CustomUser'
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# # TWITTER_CONSUMER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
-# TWITTER_CONSUMER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
-
-# FACEBOOK_APP_ID = '151538761865910' 
-# FACEBOOK_API_SECRET = '28034ed650d370911fd8bf37329493df'
-
-# INSTAGRAM_CLIENT_ID = 'ef89aa0c732a4ef1a7c0a5aed5e66465' 
-# INSTAGRAM_CLIENT_SECRET = '250e9176b5e84c33ba2f3d875ec4d570'
+SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
+SOCIAL_AUTH_TWITTER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
 
 # # GOOGLE_CONSUMER_KEY          = ''
 # GOOGLE_CONSUMER_SECRET       = ''
-# GOOGLE_OAUTH2_CLIENT_ID      = ''
-# GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+GOOGLE_OAUTH2_CLIENT_ID = '483252136915-bpa9815e04uc4e3ehg4904osd7q0orva.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'c2dV6qnKTfpTUR5hG3SCJwDs'
 
 
 LOGIN_URL = '/login-form/'
-LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL = '/login-error/'
 
 
@@ -65,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    #'social.apps.django_app.default',
     'social_auth',
     'registration',
     'crispy_forms',
@@ -72,8 +67,11 @@ INSTALLED_APPS = [
     
 
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-ACCOUNT_ACTIVATION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 3
+# REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,16 +84,20 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# # AUTHENTICATION_BACKENDS = (
-#     'social_auth.backends.twitter.TwitterBackend',
+AUTHENTICATION_BACKENDS = (
+     
+     'social.backends.twitter.TwitterOAuth',  
+
 #     'social_auth.backends.facebook.FacebookBackend',
 #     # 'social_auth.backends.instagram.InstagramBackend',
-#     'social_auth.backends.google.GoogleOAuthBackend',
-#     'social_auth.backends.google.GoogleOAuth2Backend',
-#     'social_auth.backends.google.GoogleBackend',
-#     'django.contrib.auth.backends.ModelBackend',
 
-# )
+     'social.backends.google.GoogleOpenId',
+     'social.backends.google.GoogleOAuth2',
+     'social.backends.google.GoogleOAuth',
+
+     'django.contrib.auth.backends.ModelBackend',
+
+ )
 
 ROOT_URLCONF = 'project.urls'
 
@@ -110,10 +112,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_auth.context_processors.social_auth_by_name_backends',
-                'social_auth.context_processors.social_auth_backends',
-                'social_auth.context_processors.social_auth_by_type_backends',
-                'social_auth.context_processors.social_auth_login_redirect',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
 
         },

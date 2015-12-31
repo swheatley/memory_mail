@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     
     # Social OAuth
-    url(r'', include('social_auth.urls')),
+    # url(r'', include('social_auth.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 
 ]

@@ -5,14 +5,24 @@
 
 {% block content %}
 <div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
+<div class='col-sm-3 col-sm-offset-2'>
 <h1 class="login">Login</h1>
 <form method="post" action=".">
   {% csrf_token %}
   {{ form|crispy }}
 
+
   <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Submit' %}" />
   <input type="hidden" name="next" value="{{ next }}" />
+
+  <br />
+
+  <a class="social_oauth" href="{% url 'social:begin' 'twitter' %}?next={% url 'auth_login' %}"><i class="fa fa-twitter fa-4x fa-border"></i></a>
+  <a class="social_oauth" href="{% url 'social:begin' 'google' %}?next={% url 'auth_login' %}"><i class="fa fa-google fa-4x fa-border"></i></a>
+  <!--<i class="fa fa-instagram fa-4x fa-border"></i>
+  <i class="fa fa-google fa-4x fa-border "></i>-->
+
+
 </form>
 </div>
 
