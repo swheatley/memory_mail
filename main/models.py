@@ -1,10 +1,19 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils import timezone
-from django.utils.http import urlquote
-from django.core.mail import send_mail
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.conf import settings
+# from allauth.registration.signals import user_logged_in, user_signed_up
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, User
+import stripe
+
+
+class profile(models.Model):
+    name = models.CharField(max_length=1200)
+    description = models.TextField(default='description default')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class CustomUserManager(BaseUserManager):
@@ -37,7 +46,9 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+
     email = models.EmailField('email address', max_length=255, unique=True)
+    # user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
     first_name = models.CharField('first name', max_length=30, blank=True, null=True)
     last_name = models.CharField('last name', max_length=30, blank=True, null=True)
     is_staff = models.BooleanField('staff status', default=False)
@@ -65,3 +76,35 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None):
         send_mail(subject, message, from_email, [self.email])
 
+
+class userStripe(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    stripe_id = models.CharField(max_length=200, null=True, blank=True)
+
+    def __unicode__(self):
+        if self.stripe_id:
+            return str(self.stripe_id)
+        else:
+            return self.user.username
+
+
+def stripeCallback(sender, request, user, **kwargs):
+    user_stripe_account, created = userStripe.objects.get_or_create(user=user)
+    if created:
+        print 'created for %s' % (user.username)
+
+    if user_stripe_account_stripe_id is None or user_stripe_account.stripe_id == '':
+        new_stripe_id = stripe.Customer.create(email=user.email)
+        user_stripe_account.stripe.id = new_stripe_id['id']
+        user_stripe_account.save()
+
+
+def profileCallback(sender, request, user, **kwargs):
+    userProfile, is_created = profile.objects.get_or_create(user=user)
+    if is_created:
+        userProfile.name = user.username
+        userProfile.save()
+
+# user_signed_up.connect(profileCallback)
+# user_logged_in.connect(stripeCallback)
+# user_signed_up.connect(stripeCallback)

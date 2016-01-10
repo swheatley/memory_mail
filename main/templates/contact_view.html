@@ -1,0 +1,32 @@
+{% load static from staticfiles%}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row">
+                
+                    <h1 id="message">Send me a Message!</h1>
+                
+                <br />
+                <br />
+
+               <a class="senior_button" href="/"><button class="btn btn-default return">Return to main page</button></a>         
+          <form method='POST' class='post-form'>
+            <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3" style="color: white; background-color:black; padding: 10px; border-radius: 25px; text-align: center; ">
+                {% csrf_token %}
+                {% crispy form %}
+
+            </div>  
+        </form>  
+
+    
+</body>
+</html>
+   

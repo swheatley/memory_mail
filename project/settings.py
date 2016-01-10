@@ -14,28 +14,12 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
-AUTH_USER_MODEL = 'main.CustomUser' # !!!Remember this has to do with CustomManager and CustomUser!!!!
-SOCIAL_AUTH_USER_MODEL = 'main.CustomUser'
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
-SOCIAL_AUTH_TWITTER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
-
-# # GOOGLE_CONSUMER_KEY          = ''
-# GOOGLE_CONSUMER_SECRET       = ''
-GOOGLE_OAUTH2_CLIENT_ID = '483252136915-bpa9815e04uc4e3ehg4904osd7q0orva.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = 'c2dV6qnKTfpTUR5hG3SCJwDs'
-
-
-LOGIN_URL = '/login-form/'
-LOGIN_REDIRECT_URL = '/'
-LOGIN_ERROR_URL = '/login-error/'
-
-
-
+# !!!Remember this has to do with CustomManager and CustomUser!!!!
+AUTH_USER_MODEL = 'main.CustomUser'  
+ 
 
 # Quick-start development settings - unsuitable for production
 #  See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -59,24 +43,36 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    #'social.apps.django_app.default',
+    'checkout',
     'social_auth',
     'registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.google',
     'crispy_forms',
     'bootstrap3',
-    
+    'stripe',
+    'django.contrib.sites',
+
+    # 'oauth2_provider',
+    #'corsheaders'
+ 
 
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 ACCOUNT_ACTIVATION_DAYS = 3
-# REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware'
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -85,17 +81,18 @@ MIDDLEWARE_CLASSES = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-     
-     'social.backends.twitter.TwitterOAuth',  
+    
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.open_id.OpenIdAuth',
+    'social.backends.google.GoogleOpenId',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.google.GoogleOAuth',
+    'social.backends.instagram.InstagramOAuth2',
+    # 'social.backends.facebook.FacebookOAuth',
 
-#     'social_auth.backends.facebook.FacebookBackend',
-#     # 'social_auth.backends.instagram.InstagramBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 
-     'social.backends.google.GoogleOpenId',
-     'social.backends.google.GoogleOAuth2',
-     'social.backends.google.GoogleOAuth',
-
-     'django.contrib.auth.backends.ModelBackend',
 
  )
 
@@ -109,9 +106,12 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
                 'django.template.context_processors.request',
+                'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_auth.context_processors.social_auth_by_type_backends',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
             ],
@@ -176,5 +176,88 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# allauth
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
-# FMAKEY = 'IZTZG95VPMY93N3N'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email',
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL 
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = None
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'My Subject:'
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
+ACCOUNT_LOGOUT_ON_GET = False
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_FORM_CLASS = None
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
+
+ACCOUNT_USERNAME_MIN_LENGTH = 1
+ACCOUNT_USERNAME_BLACKLIST = []
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = False
+ACCOUNT_PASSWORD_MIN_LENGTH = 6
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+ACCOUNT_SESSION_REMEMBER = True
+
+SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
+SOCIALACCOUNT_AUTO_SIGNUP = True
+
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
+
+# working :)
+SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
+SOCIAL_AUTH_TWITTER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '567871385083-sjhepk7nmquvjlcs8rfergf8hl56v90g.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8h2HilLXMg_nUp8tHhHjM2Ot'
+
+SOCIALACCOUNT_PROVIDERS = \
+    {'google':
+        {'SCOPE': ['profile', 'email'],
+         'AUTH_PARAMS': {'access_type': 'online'}}}
+
+# AIzaSyD8c4MtQrNeoU5I-yeW6KvI9b5W3I5_uRI
+# FACEBOOK_APP_ID = '1531820980479355'
+# FACEBOOK_API_SECRET = '8b52de7efdde6dcc2c0c7fe10e367286'
+
+# FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+LOGIN_REDIRECT_URL = '/'  
+# TWITTER_CONSUMER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM'  
+# TWITTER_CONSUMER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
+
+# not working :(
+SOCIAL_AUTH_INSTAGRAM_KEY = '4a0f126f6ec64c929ad658b899d44252'
+SOCIAL_AUTH_INSTAGRAM_SECRET = '187358f9a61841c58cc50461a3f5cb51'
+
+# maybe? :(
+# # SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '483252136915-bpa9815e04uc4e3ehg4904osd7q0orva.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'c2dV6qnKTfpTUR5hG3SCJwDs'
+# # not
+# SOCIAL_AUTH_FACEBOOK_KEY = '1531820980479355'
+# SOCIAL_AUTH_FACEBOOK_SECRET = '8b52de7efdde6dcc2c0c7fe10e367286' 
+
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/login-error/'
+
+# Stripe Stuff
+
+# test keys
+STRIPE_PUBLIC_KEY = 'pk_test_abDKoFj8mdk1c2LkW1R21T7k'
+STRIPE_SECRET_KEY = 'sk_test_VvkPjFcKvIHib7Yy13ZNdWRi'
+
+
+# # live keys
+# STRIPE_PUBLISHABLE_KEY = ''
+# STRIPE_SECRET_KEY = ''
