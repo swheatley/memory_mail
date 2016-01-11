@@ -1,7 +1,8 @@
 body{
-    background-color: #5872BA;
+    background-color: #1B95E0;
     font-family: 'Dosis', sans-serif;
     
+
 }
 h1{
     margin-left: 20px;
@@ -24,7 +25,7 @@ i{
    float: left;
 }
 p{
-    color: white;
+    color: black;
 }
 
 /* Picture | Middle Section */
@@ -91,6 +92,6 @@ p{
 .twitter-share-button{
    
     margin-left: 300px;
-    
+
 
 }

@@ -42,24 +42,28 @@ class SubscribeView(StripeMixin, FormView):
 
 @login_required
 def checkout(request):
-    publishKey = settings.STRIPE_PUBLISHABLE_KEY
-    customer_id = request.user.userstripe.stripe_id
-    if request.method == 'POST':
-        token = request.POST['stripeToken']
-        try:
-            stripe.Customer.retrieve(customer_id)
-            customer.sources.create(card=token)
-            charge = stripe.Charge.create(
-                amount=1000,  # amount in cents, again
-                currency="usd",
-                customer=customer,
-                description="payinguser@example.com"
-            )
-        except stripe.error.CardError, e:
-            #  The card has been declined
-            pass
-    context = {'publishKey': publishKey}
+    context = {}
     template = 'checkout.html'
     return render(request, template, context)
+    # # publishKey = settings.STRIPE_PUBLIC_KEY
+    # customer_id = request.user.userStripe.stripe_id
+    # if request.method == 'POST':
+    #     token = request.POST['stripeToken]
+    #     try:
+    #         stripe.Customer.retrieve(customer_id)
+    #         customer.sources.create(card=token)
+    
+    #         charge = stripe.Charge.create(
+    #             amount=1000,  # amount in cents, again
+    #             currency="usd",
+    #             customer=customer,
+    #             description="payinguser@example.com"
+    #         )
+    #     except stripe.error.CardError, e:
+    #         #  The card has been declined
+    #         pass
+    # context = {'publishKey': publishKey}
+    # template = 'checkout.html'
+    # return render(request, template, context)
 
 

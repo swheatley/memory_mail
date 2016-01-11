@@ -1,0 +1,39 @@
+body{
+    background-image: url('../images/MemoryMail_MockUp.png'); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+.fa-sign-in{
+    color: #5872BA;
+    float: right;
+}
+form{
+   margin-top: 120%;
+   margin-left: 50%;
+
+}
+input, .btn-primary{
+    border-radius: 25px;
+    width: 50%;
+    padding: 10px;
+    display: inline;
+}
+.btn-primary{
+    margin-top: 5px;
+    background-color: #5872BA;
+    margin-left: 50%;
+    box-shadow: 10px 5px;
+}
+input[type="search"]{
+    width: 300px;
+    text-align: center;
+    border: #5872BA solid 4px;
+
+}
+::-webkit-input-placeholder { /* Safari, Chrome and Opera */
+  color: #5872BA;
+  font-weight: bold;
+}
+.search{
+    margin-bottom: 5px;
+}

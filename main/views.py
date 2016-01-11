@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 
-# from main.models import CustomUser
+from main.models import CustomUser
 from main.forms import ContactForm
 
 # from apiclient.discovery import build
@@ -26,6 +26,36 @@ def navbar(request):
     return render_to_response('navbar.html', context, context_instance=RequestContext(request))
 
 
+def dashboard(request):
+    context = {}
+    return render_to_response('dashboard.html', context, context_instance=RequestContext(request))
+
+# dashboard views
+
+
+def blog(request):
+    context = {}
+    return render_to_response('dashboard/blog.html', context, context_instance=RequestContext(request))
+
+
+def book(request):
+    context = {}
+    return render_to_response('dashboard/book.html', context, context_instance=RequestContext(request))
+
+
+def memories(request):
+    context = {}
+    return render_to_response('dashboard/memories.html', context, context_instance=RequestContext(request))
+
+
+def upgrade(request):
+    context = {}
+    return render_to_response('dashboard/upgrade.html', context, context_instance=RequestContext(request))
+
+
+# # def build_service(credentials):
+# # def build_service(credentials):
+# # def build_service(credentials):
 # # def build_service(credentials):
 #     # Build a Gmail service object.
 
@@ -73,7 +103,7 @@ def navbar(request):
 #             raise NotImplementedError()
 
 
-@login_required
+# @login_required
 def contact_view(request):
     context = {}
 

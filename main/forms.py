@@ -1,4 +1,4 @@
-# from main.models import Hairstyle 
+
 from django import forms
 
 from django.core.validators import validate_email
@@ -36,5 +36,5 @@ class ContactForm(forms.Form):
         self.fields['message'].required = True
         
 
-            # require_all_fields = False
+           # require_all_fields = False
 

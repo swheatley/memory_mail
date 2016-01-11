@@ -20,20 +20,32 @@ from django.conf import settings
 from django.conf.urls.static import static
 from main import views
 from checkout import views 
-from django.contrib.auth import views as auth_views
-from checkout.views import SubscribeView, SuccessView
+# from django.contrib.auth import views as auth_views
+# from checkout.views import SubscribeView, SuccessView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     
-    url(r'^subscribe/$', SubscribeView.as_view(), name='subscribe'),
-    url(r'^thank_you/$', SuccessView.as_view(), name='thank_you'),
+    # url(r'^subscribe/$', SubscribeView.as_view(), name='subscribe'),
+    # url(r'^thank_you/$', SuccessView.as_view(), name='thank_you'),
+
     # Design Views
     url(r'^$', 'main.views.index', name='index'),
     url(r'^navbar/$', 'main.views.navbar', name='navbar'),
+    url(r'^dashboard/$', 'main.views.dashboard', name='dashboard'),
+
+    # Dashboard Views
+
+    url(r'^blog/$', 'main.views.blog', name='dashboard'),
+    url(r'^book/$', 'main.views.book', name='dashboard'),
+    url(r'^memories/$', 'main.views.memories', name='dashboard'),
+    url(r'^upgrade/$', 'main.views.upgrade', name='dashboard'),
+
+
+    # Stripe view
     url(r'^checkout/$', 'checkout.views.checkout', name='checkout'),
 
-    # Aullauth
+    #  Aullauth
     # url(r'^accounts/', include('allauth.urls')),
 
     # Django Registration Redux

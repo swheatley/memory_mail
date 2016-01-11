@@ -1,5 +1,6 @@
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 
 <!DOCTYPE html>
@@ -10,8 +11,9 @@
     <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="icon" type="image/png"  href="{% static 'favicon/favicon.ico' %}">
+    <link href="{% static 'fonts/lato/Lato-Regular.ttf' %}">
 </head>
 <body>
 
@@ -22,29 +24,26 @@
 <! --- Landing Portion of Page -->
 
 <div class="container-fluid">
-    <div class='col-sm-12 col-md-12 col-lg-12 text-center'>
-        <div class="row">
-            <img class="mockup" src="{% static 'images/loading_screen.png' %}">
-        </div>   
-    </div>
-    <br />
-    <br />
-     <div class='col-sm-12 col-md-12 col-lg-12 text-center'>
+    <div class='col-sm-12 col-md-12 col-lg-12'>
         <div class="row">
             <div class="intro-1">
-                <a href="/accounts/login"><p class="login">Log In</p></a>
-                <video></video>
-               <p class="intro">Watch our Introduction video!</p>
-               <p class="intro">MemoryMail captures and showcases email conversations between Missionaries and their families. Find out more!</p>
+                <a href="/dashboard"><i class="fa fa-sign-in fa-3x"></i></a>
+              </div>  
+               
+        </div>  
+              
+        <div class="col-sm-4 col-sm-offset-3">
+            <div class="row">  
+               <form action="/" method="post">{% csrf_token %}
+                      <input class="search" type="search" placeholder="username"><br>
+                      <input class="search" type="search" placeholder="password">
+                      <input class='btn btn-primary' type="submit" />
+                      <input type="hidden" name="next" value="{{ next }}" />
+                  </div> 
+                </form>
             </div>
-        </div>   
-    </div>
-    <!--<div class="col-sm-6 col-md-6 col-lg-6 text-center">
-        <div class="row">
-            <div class="blue">Sign Up</div>
-        </div>
-    </div>-->
-
+        </div>  
+       
  </div>  
 
 </body>
