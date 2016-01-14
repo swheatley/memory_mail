@@ -8,6 +8,7 @@
     <div class='col-sm-6 col-sm-offset-3'>
             <h1 class="login">Login</h1>
             <br/>
+          {% if request.user.is_anonymous %}
             <form method="post" action=".">
               {% csrf_token %}
               {{ form|crispy }}
@@ -19,13 +20,17 @@
               <br />
 
               <a class="social_oauth" href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter fa-4x fa-border"></i></a>
-              <!--<a class="social_oauth" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google fa-4x fa-border"></i></a>
-              <a class="social_oauth" href="{% url 'social:begin' 'instagram' %}"><i class="fa fa-instagram fa-4x fa-border"></i></a>-->
+              <!--<a class="social_oauth" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google fa-4x fa-border"></i></a>-->
+              <a class="social_oauth" href="{% url 'social:begin' 'instagram' %}"><i class="fa fa-instagram fa-4x fa-border"></i></a>
 
            
 
 
             </form>
+            {% else %}
+
+            <a href="/accounts/logout/">logout</a>
+            {% endif %}
     </div>
 
 

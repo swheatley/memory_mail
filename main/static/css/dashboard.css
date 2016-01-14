@@ -1,3 +1,7 @@
+body{
+    font-family: 'Permanent Marker', cursive;
+    /*font-family: 'Comfortaa', cursive;*/
+}
 li{
     
     margin-left: -40px;
@@ -27,7 +31,9 @@ li:hover{
     width: 90%;
     height: 50%;
     float: left;
-    margin-left: 20%;
+    margin-top: -3%;
+    margin-left: 17%;
+    padding: 3%;
 
 
 }
@@ -64,45 +70,25 @@ a:hover{
 }
 /* Template Bootstrap CSS */
 
-#wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled {
-    padding-left: 250px;
-}
 
 #sidebar-wrapper {
-    z-index: 1000;
+    
     position: fixed;
     left: 250px;
     width: 0;
     height: 100%;
     margin-left: -250px;
-    overflow-y: auto;
     background: lightgrey;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+   
 }
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 15px;
 }
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
+ #page-content-wrapper {
+    position: relative;
     margin-right: -250px;
 }
 
@@ -155,14 +141,7 @@ a:hover{
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
-
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
+ 
     #sidebar-wrapper {
         width: 250px;
     }
@@ -173,11 +152,11 @@ a:hover{
 
     #page-content-wrapper {
         padding: 20px;
-        position: relative;
+        position:absolute;
     }
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
+   #page-content-wrapper {
+        position:absolute;
         margin-right: 0;
-    }
+    }*/
 }

@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 # from allauth.account.signals import user_logged_in, user_signed_up
 # from registration.signals import auth_login, registration_register 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, User
@@ -33,7 +34,7 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, email=None, username=None, password=None, **extra_fields):
         return self._create_user(email, username, password, False, False, **extra_fields)
 
-    def create_superuser(self, email=None, username=None, password=None, **extra_fields):
+    def create_superuser(self, email, username, password, **extra_fields):
         return self._create_user(email, username, password, True, True, **extra_fields)
 
 

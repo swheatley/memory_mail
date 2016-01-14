@@ -6,46 +6,41 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="icon" type="image/png"  href="{% static 'favicon/favicon.ico' %}">
 </head>
 <body>
-  
-            {% block body  %}
 
-            {% endblock %}
+
+        
             <div id="wrapper">
-
                 <!-- Sidebar -->
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav">
-                        <!--<li class="sidebar-brand">
-                            <a href="#">
-                               Profile
-                            </a>
-                        </li>-->
-                        <li><i class="fa fa-comment fa-3x"></i>Memories</li>
-                        <li><i class="fa fa-pencil fa-3x"></i>Visit Blog</li>
-                        <li><i class="fa fa-book fa-3x"></i>Print Book</li>
+                        <a href="/memories"><li><i class="fa fa-comment fa-3x"></i>Memories</li></a>
+                        <a href="/blog"><li><i class="fa fa-pencil fa-3x"></i>Visit Blog</li></a>
+                        <a href="/book"><li><i class="fa fa-book fa-3x"></i>Print Book</li></a>
                         <a href="/checkout"><li><i class="fa fa-credit-card-alt fa-3x"></i>Upgrade Now</li></a>
                         <br/>
                         <br/>
                         
                         <a href="/accounts/login"><li><i class="fa fa-sign-in fa-3x"></i>Login</li></a>
-                        <a href="#"><li><i class="fa fa-sign-out fa-3x"></i>Logout</li></a>
+                        <a href="/accounts/logout/"><li><i class="fa fa-sign-out fa-3x"></i>Logout</li></a>
                     </ul>
                 </div>
 
-                 <div id="page-content-wrapper">
-            <div class="container">
-                
-                
-               
-            </div>
 
-        </div> 
+             {% block body  %}
+
+
+      {% endblock %}
+
+
+            
 
 </body>
 </html>
