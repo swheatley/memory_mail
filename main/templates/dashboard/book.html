@@ -1,5 +1,5 @@
 {% extends 'dashboard.html' %}
-
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +18,14 @@
                                 
                                 <ul>
                                     <li id="memories">Commemorative Books</li>
-                                    <li><i class="fa fa-picture-o fa-2x"></i></li>
-                                    <li><i class="fa fa-comment fa-2x"></i></li>
+                                    <li class="comments"><i class="fa fa-book fa-2x"></i></li>
+
+                                    
                                 </ul>
                             </div>
 
                         
-                        
+                       
                         
                     </div>
                 </div>
@@ -34,11 +35,13 @@
     
       
 
-      
+      <img class="journal" src="{% static 'images/journal.jpg' %}">
     
 
 
       {% endblock %}
+
+
     
 </body>
 </html>

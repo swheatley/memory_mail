@@ -21,16 +21,16 @@
                     <ul class="sidebar-nav">
                         <a href="/memories"><li><i class="fa fa-comment fa-3x"></i>Memories</li></a>
                         <a href="/blog"><li><i class="fa fa-pencil fa-3x"></i>Visit Blog</li></a>
-                        <a href="/book"><li><i class="fa fa-book fa-3x"></i>Print Book</li></a>
+                        <a href="/book"><li><i class="fa fa-book fa-3x"></i>Create a Book</li></a>
                         <a href="/checkout"><li><i class="fa fa-credit-card-alt fa-3x"></i>Payment</li></a>
                         <br/>
                         <br/>
                         
                         <a href="/accounts/login"><li><i class="fa fa-sign-in fa-3x"></i>Login</li></a>
-                        <a href="/accounts/logout/"><li><i class="fa fa-sign-out fa-3x"></i>Logout</li></a>
+                        <!--<a href="/accounts/logout"><li><i class="fa fa-sign-out fa-3x"></i>Logout</li></a>-->
                             {% if request.user.is_authenticated %}  
-                               
-                                <li class="register"><a class="username" href="/dashboard">{{request.user}}</a></li>
+                                <a href="{% url 'auth_logout'%}"><li><i class="fa fa-sign-out fa-3x"></i>Logout</li></a>
+                                <li class="register"><a class="username">{{request.user}}</a></li>
                             {% else %}
                                 <li class="register"><a href="{% url 'registration_register' %}">Register <span class="sr-only">(current)</span></a></li>
                             {% endif %}

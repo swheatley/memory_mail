@@ -174,7 +174,7 @@ LOGIN_REDIRECT_URL = '/dashboard'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
  
 # SOCIAL_AUTH_LOGIN_URL = '/dashboard'
-SOCIAL_AUTH_LOGIN_URL = '/dashboard'
+SOCIAL_AUTH_LOGIN_URL = '/'
 # SOCIAL_AUTH_INSTAGRAM_REDIRECT_URL = 'http://localhost:8000/complete/instagram'
 # working :)
 SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 

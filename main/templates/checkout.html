@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block jquery %}
+<script>
     $(function($) {
         $('#payment-form').submit(function(event) {
             var $form = $(this);
@@ -40,12 +41,15 @@
             return false;
   });
 });
+</script>
 {% endblock %}
 
 {% block content %}
+
 <div class="container-fluid">
 <div class="row">
 <div class="col-sm-4 col-sm-offset-4">
+  <i class="fa fa-cc-stripe fa-2x"></i>
     <form class='form' action="" method="POST" id="payment-form">{% csrf_token %}
       <span class="payment-errors"></span>
 
@@ -74,6 +78,7 @@
 
       <button class="btn btn-success" type="submit">Submit Payment</button>
     </form>
+      
     </div>
 </div>
 </div>

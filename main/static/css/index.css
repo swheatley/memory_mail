@@ -16,7 +16,7 @@ img{
     background-position: 50% 0%;
 }
 .intro-1{
-      position: relative;
+    position: relative;
     z-index: 2;
 }
 .fa-sign-in{
@@ -28,8 +28,10 @@ img{
 
 
 ul{
-  display: inline;
+  
   list-style-type: none;
+  margin-top: 50%;
+  margin-left: 40%;
 }
 ul li{
   display: inline;
@@ -37,13 +39,18 @@ ul li{
 
 /* Social Media */
 li .fb-follow,.twitter-share-button{
-  margin-top: 50%;
+  margin-top: 45%;
+
+
 }
 .fb-follow{
-  float: right;
+  margin-bottom: 5px;
+
  
 }
-
+.twitter-share-button{
+  margin-left: 20px;
+}
 input, .btn-primary{
     border-radius: 25px;
     

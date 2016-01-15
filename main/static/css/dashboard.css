@@ -175,7 +175,25 @@ a:hover{
     margin-top: 100px;
 }
 
+.fa-cc-stripe{
+    color:#5CB85C;
+}
 /* Login Page */
 .fa-twitter, .fa-google{
     color: black;
+}
+/* Create books page */
+
+.journal{
+    display: block;
+    position: absolute;
+    left: 20.2%;
+    top: 15%;
+    width: 81%;
+    height: 95%;
+    opacity: 0.1;
+    filter: grayscale(20%);
+  
+   
+   
 }
