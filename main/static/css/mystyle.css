@@ -19,6 +19,7 @@ i{
     width: 80px;
     height: 60px;
     margin-top: -15px;
+    float: right;
 
 }
 .navbar-collapse{
@@ -27,7 +28,9 @@ i{
 p{
     color: black;
 }
-
+.sr-only{
+    float:right;
+}
 /* Picture | Middle Section */
 
 /* Index Page */
@@ -41,44 +44,7 @@ p{
     color: white;
     font-size: 50px
 }
-/*
-.btn-default{
-    background-color: #4F67A9;
-    color: #E3DBCC;
-    border-radius: 5%;
-    font-weight: bolder;
-    margin-top: -200px;
-    font-size: 50px;
-}
-.btn-default:hover{
-    text-decoration: none;
-    background-color: #E3DBCC;
-}
 
-.enter:hover{
-    text-decoration: none;
-}
-
-
-.blue{
-    margin-top: -250px;
-    width: 175.5%;
-    font-size: 20px;
-    padding: 10px;
-    background-color: #5872BA;
-    color: white;
-    margin-left: 70px;
-
-   
-}
-
-*/
-.intro-1{
-    margin-top: 20px;
-    width: 100%;
-    background-color: black;
-
-}
 /* Login */
 .btn-primary{
     background-color: black;
@@ -88,10 +54,6 @@ p{
     margin-top: 20px;
     margin-right: 40px;
 }
-
-.twitter-share-button{
-   
-    margin-left: 300px;
-
-
+.nav-navbar li{
+    float: right;
 }

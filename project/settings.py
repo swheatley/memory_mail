@@ -79,6 +79,7 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     'social.backends.instagram.InstagramOAuth2',
     'social.backends.facebook.FacebookOAuth2',
+    'social.backends.stripe.StripeOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     
 
@@ -170,25 +171,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = '/dashboard'
 LOGIN_REDIRECT_URL = '/dashboard'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard' 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
+ 
 # SOCIAL_AUTH_LOGIN_URL = '/dashboard'
-SOCIAL_AUTH_LOGIN_URL = '/'
-
+SOCIAL_AUTH_LOGIN_URL = '/dashboard'
+# SOCIAL_AUTH_INSTAGRAM_REDIRECT_URL = 'http://localhost:8000/complete/instagram'
 # working :)
 SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 
 SOCIAL_AUTH_TWITTER_SECRET = 'XkQgkmLTA5TJ6jbuGznBjCA4SZPio1zFo6VqcPVmUGN5JAuF51'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '567871385083-sjhepk7nmquvjlcs8rfergf8hl56v90g.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8h2HilLXMg_nUp8tHhHjM2Ot'
 
 # not working :(
 SOCIAL_AUTH_INSTAGRAM_KEY = '4a0f126f6ec64c929ad658b899d44252'
 SOCIAL_AUTH_INSTAGRAM_SECRET = '1296c9b298d5492dad2a53f12e5d0f07'
 
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '567871385083-sjhepk7nmquvjlcs8rfergf8hl56v90g.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8h2HilLXMg_nUp8tHhHjM2Ot'
-
 # AIzaSyD8c4MtQrNeoU5I-yeW6KvI9b5W3I5_uRI
-SOCIAL_AUTH_FACEBOOK_KEY = '1531820980479355'
-SOCIAL_AUTH_FACEBOOK_SECRET = '8b52de7efdde6dcc2c0c7fe10e367286'
+SOCIAL_AUTH_FACEBOOK_KEY = '931246330263182'
+SOCIAL_AUTH_FACEBOOK_SECRET = '88808c535bbba633e6205089fb5e31f4'
 
 # FACEBOOK_EXTENDED_PERMISSIONS = ['email']
   

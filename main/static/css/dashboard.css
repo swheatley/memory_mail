@@ -1,7 +1,9 @@
+
 body{
     font-family: 'Permanent Marker', cursive;
     /*font-family: 'Comfortaa', cursive;*/
 }
+
 li{
     
     margin-left: -40px;
@@ -9,11 +11,13 @@ li{
     list-style-type: none;
 
 }
-i{
+i{  
+    margin-top: 5%;
     padding: 10px;
-    color: grey;
+    color: black;
 }
 i, li:hover{
+
     color: white;
 }
 li:hover{
@@ -111,12 +115,11 @@ a:hover{
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: black;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: w;
     background: rgba(255,255,255,0.2);
 }
 
@@ -140,6 +143,12 @@ a:hover{
     background: none;
 }
 
+.register a{
+    text-align: center;
+   
+    
+}
+
 @media(min-width:768px) {
  
     #sidebar-wrapper {
@@ -158,5 +167,15 @@ a:hover{
    #page-content-wrapper {
         position:absolute;
         margin-right: 0;
-    }*/
+    }
+}
+/* Payment Page */
+
+#payment-form{
+    margin-top: 100px;
+}
+
+/* Login Page */
+.fa-twitter, .fa-google{
+    color: black;
 }

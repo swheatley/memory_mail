@@ -15,40 +15,66 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="icon" type="image/png"  href="{% static 'favicon/favicon.ico' %}">
-    <link href="{% static 'fonts/lato/Lato-Regular.ttf' %}">
 </head>
 <body>
 
 <!-Navbar--->
 
-
+<img src="{% static 'images/MemoryMail_MockUp.png' %}">
 
 <! --- Landing Portion of Page -->
 
 <div class="container">
     <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
         <div class="row">
+
             <div class="intro-1">
-                <a href="/dashboard"><i class="fa fa-sign-in fa-3x"></i></a>
+                <a href="/dashboard"><i class="fa fa-sign-in fa-5x"></i></a>
               </div>  
                
         </div>  
-              
-        <div class="col-sm-4 col-sm-offset-3">
-            <div class="row">
-              <a class="social_oauth" href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter fa-4x fa-border"></i></a>
-              <a class="social_oauth" href="{% url 'social:begin' 'instagram' %}?next={{ request.path }}"><i class="fa fa-instagram fa-4x fa-border"></i></a>  
-              <a class="social_oauth" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><i class="fa fa-facebook fa-4x fa-border"></i></a> 
-               <!--<form class="ux-form" action="/dashboard" method="post">{% csrf_token %}
-                      <input class="search" type="search" placeholder="username"><br>
-                      <input class="search" type="password" placeholder="password" class="ux-password-show-hide" >
-                      <input class='btn btn-primary' type="submit" />
-                      <input type="hidden" name="next" value="{{ next }}" />
-                  </div> 
-                </form>-->
-            </div>
-        </div>   
+            <ul>
+              <li> <a class="twitter-share-button" data-size="large" href="https://twitter.com/intent/tweet"></li></a> 
+              <!--<li><a class="twitter-follow-button" data-size="large" href="https://twitter.com/MemoryMail">Follow @HansenShaylee</a></li>-->
+            <ul>
+            </ul>
+              <li><div class="fb-follow" data-href="https://www.facebook.com/zuck" data-layout="button" data-show-faces="true"></div></li>  
+            </ul>
  </div>  
+
+<script>
+  $(document).ready(function(){
+      {% block jquery %}
+      {% endblock %}
+  });
+</script>
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+
+    if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+     
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+    return t;
+    }(document, "script", "twitter-wjs"));
+ 
+</script>
+ <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1531820980479355";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 </body>
 </html>
