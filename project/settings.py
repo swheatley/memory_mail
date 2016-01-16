@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # !!!Remember this has to do with CustomManager and CustomUser!!!!
 AUTH_USER_MODEL = 'main.CustomUser'  
-SOCIAL_AUTH_USER_MODEL = 'main.CustomUser' 
+# SOCIAL_AUTH_USER_MODEL = 'main.CustomUser' 
 
 # Quick-start development settings - unsuitable for production
 #  See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -86,19 +86,19 @@ AUTHENTICATION_BACKENDS = (
 
 
  )
-# #SOCIAL_AUTH_PIPELINE = (
+SOCIAL_AUTH_PIPELINE = (
 
-#     'social.pipeline.social_auth.social_details',
-#     'social.pipeline.social_auth.social_uid',
-#     'social.pipeline.social_auth.auth_allowed',
-#     'social.pipeline.social_auth.social_user',
-#     'social.pipeline.user.get_username',
-#     'social.pipeline.social_auth.associate_by_email',  # <-- this one does the trick
-#     'social.pipeline.user.create_user',
-#     'social.pipeline.social_auth.associate_user',
-#     'social.pipeline.social_auth.load_extra_data',
-#     'social.pipeline.user.user_details'
-# )
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.social_auth.associate_by_email',  
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details'
+)
 
 ROOT_URLCONF = 'project.urls'
 
@@ -116,7 +116,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'social_auth.context_processors.social_auth_by_type_backends',
-                # 'social.apps.django_app.context_processors.associated',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
             ],
