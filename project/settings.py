@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap3',
     'stripe',
+    'debug_toolbar',
 
 
 ]
@@ -85,6 +86,19 @@ AUTHENTICATION_BACKENDS = (
 
 
  )
+# #SOCIAL_AUTH_PIPELINE = (
+
+#     'social.pipeline.social_auth.social_details',
+#     'social.pipeline.social_auth.social_uid',
+#     'social.pipeline.social_auth.auth_allowed',
+#     'social.pipeline.social_auth.social_user',
+#     'social.pipeline.user.get_username',
+#     'social.pipeline.social_auth.associate_by_email',  # <-- this one does the trick
+#     'social.pipeline.user.create_user',
+#     'social.pipeline.social_auth.associate_user',
+#     'social.pipeline.social_auth.load_extra_data',
+#     'social.pipeline.user.user_details'
+# )
 
 ROOT_URLCONF = 'project.urls'
 
@@ -171,10 +185,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = '/dashboard'
 LOGIN_REDIRECT_URL = '/dashboard'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
  
 # SOCIAL_AUTH_LOGIN_URL = '/dashboard'
-SOCIAL_AUTH_LOGIN_URL = '/'
+# SOCIAL_AUTH_LOGIN_URL = '/'
 # SOCIAL_AUTH_INSTAGRAM_REDIRECT_URL = 'http://localhost:8000/complete/instagram'
 # working :)
 SOCIAL_AUTH_TWITTER_KEY = '9rCc3lx8eN6FmPoGWpDWYBUUM' 

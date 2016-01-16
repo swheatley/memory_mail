@@ -5,7 +5,7 @@
 {% block body %}
 <div class='row'>
     <div class='col-sm-6 col-sm-offset-3'>
-            <h1 class="login">Login</h1>
+            <!--<h1 class="login">Login</h1>-->
             <br/>
           {% if request.user.is_anonymous %}
             <form method="post" action=".">
@@ -18,7 +18,7 @@
 
 
               <a class="social_oauth" href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter fa-4x fa-border"></i></a>
-              <a class="social_oauth" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google fa-4x fa-border"></i></a>
+               <a class="social_oauth" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google fa-4x fa-border"></i></a>
               
 
            </form>
@@ -26,16 +26,18 @@
 
            <a href="/accounts/logout/">logout</a>
             {% endif %}
+
+           
     </div>
 </div>
 
 
 
-<!--<div class='row'>
+<div class='row'>
 <div class='col-sm-12 col-sm-offset-3 text-align-center'>
 <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it !" %}</a></p>
 <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register !" %}</a></p>
 </div>
-</div>-->
+</div>
 
 {% endblock body %}

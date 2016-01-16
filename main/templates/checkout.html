@@ -3,7 +3,7 @@
 
 {% block script %}
 <script type="text/javascript"> 
-   Stripe.setPublishableKey('pk_test_abDKoFj8mdk1c2LkW1R21T7k');
+   Stripe.setPublishableKey('{{publishKey}}');
    
   function stripeResponseHandler(status, response) {
   var $form = $('#payment-form');
@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block jquery %}
-<script>
+
     $(function($) {
         $('#payment-form').submit(function(event) {
             var $form = $(this);
@@ -41,7 +41,7 @@
             return false;
   });
 });
-</script>
+
 {% endblock %}
 
 {% block content %}

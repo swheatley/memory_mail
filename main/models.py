@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-# from allauth.account.signals import user_logged_in, user_signed_up
-# from registration.signals import auth_login, registration_register 
+from registration.signals import user_activated, user_registered
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, User
 import stripe
 
@@ -94,19 +93,19 @@ def stripeCallback(sender, request, user, **kwargs):
     if created:
         print 'created for %s' % (user.username)
 
-#     if user_stripe_account_stripe_id is None or user_stripe_account.stripe_id == '':
-#         new_stripe_id = stripe.Customer.create(email=user.email)
-#         user_stripe_account.stripe.id = new_stripe_id['id']
-#         user_stripe_account.save()
+        if user_stripe_account_stripe_id is None or user_stripe_account.stripe_id == '':
+            new_stripe_id = stripe.Customer.create(email=user.email)
+            user_stripe_account.stripe.id = new_stripe_id['id']
+            user_stripe_account.save()
 
 
-# def profileCallback(sender, request, user, **kwargs):
-#     userProfile, is_created = profile.objects.get_or_create(user=user)
-#     if is_created:
-#         userProfile.name = user.username
-#         userProfile.save()
+def profileCallback(sender, request, user, **kwargs):
+    userProfile, is_created = profile.objects.get_or_create(user=user)
+    if is_created:
+        userProfile.name = user.username
+        userProfile.save()
 
-# user_logged_in.connect(get_create_stripe)
-# user_signed_up.connect(profileCallback)
-# user_logged_in.connect(stripeCallback)
-# user_signed_up.connect(stripeCallback)
+
+user_registered.connect(profileCallback)
+user_activated.connect(stripeCallback)
+
