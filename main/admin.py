@@ -15,3 +15,4 @@ class userStripeAdmin(admin.ModelAdmin):
 
 admin.site.register(userStripe, userStripeAdmin)
 
+

@@ -20,14 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from main import views
 from checkout import views 
-# from django.contrib.auth import views as auth_views
-# from checkout.views import SubscribeView, SuccessView
+from django.contrib.auth import views as auth_views
+from checkout.views import SubscribeView, SuccessView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     
-    # url(r'^subscribe/$', SubscribeView.as_view(), name='subscribe'),
-    # url(r'^thank_you/$', SuccessView.as_view(), name='thank_you'),
+    url(r'^subscribe/$', SubscribeView.as_view(), name='subscribe'),
+    url(r'^thank_you/$', SuccessView.as_view(), name='thank_you'),
 
     # Design Views
     url(r'^$', 'main.views.index', name='index'),
@@ -56,5 +56,9 @@ urlpatterns = [
 
 
     # Stripe Payments
-    url(r'^payments/', include('djstripe.urls', namespace="djstripe"))
+    # url(r'^payments/', include('djstripe.urls', namespace="djstripe"))
+
+    # Zinnia ( Blog )
+    url(r'^weblog/', include('zinnia.urls', namespace='zinnia')),
+    url(r'^comments/', include('django_comments.urls')),
 ]

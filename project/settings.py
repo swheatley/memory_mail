@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'bootstrap3',
     'stripe',
     'debug_toolbar',
+    'django_comments',
+    'mptt',
+    'tagging',
+    'zinnia',
 
 
 ]
@@ -62,6 +66,11 @@ ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_AUTO_LOGIN = True
 # LOGIN_REDIRECT_URL = '/'
 
+ZINNIA_ENTRY_DETAIL_TEMPLATES = [
+    ('zinnia/fullwidth_entry_detail.html', 'Fullwidth template'),
+]
+ZINNIA_PING_EXTERNAL_URLS = False
+ZINNIA_SAVE_PING_DIRECTORIES = False
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,19 +95,20 @@ AUTHENTICATION_BACKENDS = (
 
 
  )
-SOCIAL_AUTH_PIPELINE = (
 
-    'social.pipeline.social_auth.social_details',
-    'social.pipeline.social_auth.social_uid',
-    'social.pipeline.social_auth.auth_allowed',
-    'social.pipeline.social_auth.social_user',
-    'social.pipeline.user.get_username',
-    'social.pipeline.social_auth.associate_by_email',  
-    'social.pipeline.user.create_user',
-    'social.pipeline.social_auth.associate_user',
-    'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details'
-)
+#SOCIAL_AUTH_PIPELINE = (
+
+#     'social.pipeline.social_auth.social_details',
+#     'social.pipeline.social_auth.social_uid',
+#     'social.pipeline.social_auth.auth_allowed',
+#     'social.pipeline.social_auth.social_user',
+#     'social.pipeline.user.get_username',
+#     'social.pipeline.social_auth.associate_by_email',  
+#     'social.pipeline.user.create_user',
+#     'social.pipeline.social_auth.associate_user',
+#     'social.pipeline.social_auth.load_extra_data',
+#     'social.pipeline.user.user_details'
+# )
 
 ROOT_URLCONF = 'project.urls'
 
@@ -115,6 +125,7 @@ TEMPLATES = [
                 'django.template.context_processors.csrf',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'zinnia.context_processors.version', 
                 'social_auth.context_processors.social_auth_by_type_backends',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',

@@ -4,8 +4,10 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from registration.signals import user_activated, user_registered
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class CustomUserManager(BaseUserManager):
@@ -38,7 +40,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-
+    
     email = models.EmailField('email address', max_length=255, unique=True)
     first_name = models.CharField('first name', max_length=30, blank=True, null=True)
     last_name = models.CharField('last name', max_length=30, blank=True, null=True)
@@ -77,9 +79,9 @@ class profile(models.Model):
         return self.name
 
 
-class userStripe(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+class userStripe(AbstractBaseUser):
     stripe_id = models.CharField(max_length=200, null=True, blank=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True)
 
     def __unicode__(self):
         if self.stripe_id:
@@ -93,10 +95,10 @@ def stripeCallback(sender, request, user, **kwargs):
     if created:
         print 'created for %s' % (user.username)
 
-        if user_stripe_account_stripe_id is None or user_stripe_account.stripe_id == '':
-            new_stripe_id = stripe.Customer.create(email=user.email)
-            user_stripe_account.stripe.id = new_stripe_id['id']
-            user_stripe_account.save()
+    if user_stripe_account.stripe_id is None or user_stripe_account.stripe_id == '':
+        new_stripe_id = stripe.Customer.create(email=user.email)
+        user_stripe_account.stripe.id = new_stripe_id['id']
+        user_stripe_account.save()
 
 
 def profileCallback(sender, request, user, **kwargs):
@@ -106,6 +108,7 @@ def profileCallback(sender, request, user, **kwargs):
         userProfile.save()
 
 
-user_registered.connect(profileCallback)
 user_activated.connect(stripeCallback)
+user_registered.connect(profileCallback)
+
 
